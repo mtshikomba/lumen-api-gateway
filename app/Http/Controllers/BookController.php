@@ -3,19 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\book;
+use App\Services\BookService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class BookController extends Controller
 {
+
+    /**
+     * The service to consume the authors microservice
+     * @var BookService
+     */
+    public $bookService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(BookService $bookService)
     {
-        //
+        $this->bookService = $bookService;
     }
 
     /**
@@ -33,7 +41,7 @@ class BookController extends Controller
      */
     public function show($book)
     {
-        
+
     }
 
     /**
