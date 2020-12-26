@@ -10,11 +10,10 @@ trait ConsumesExternalService
     public function performRequest($method, $requestUrl, $formParams = [], $headers = []){
 
         $client = new Client([
-            'base_url' => $this->baseUrl
+            'base_uri' => $this->baseUrl
         ]);
 
         $response = $client->request($method, $requestUrl, ['form_params' => $formParams, 'headers' => $headers]);
-
         return $response->getBody()->getContents();
     }
 }
