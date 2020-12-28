@@ -11,7 +11,7 @@ class BookController extends Controller
 {
 
     /**
-     * The service to consume the authors microservice
+     * The service to consume the books microservice
      * @var BookService
      */
     public $bookService;
@@ -32,7 +32,7 @@ class BookController extends Controller
      */
     public function index()
     {
-
+        return $this->successReponse($this->bookService->obtainBooks());
     }
 
     /**
@@ -41,7 +41,7 @@ class BookController extends Controller
      */
     public function show($book)
     {
-
+        return $this->successReponse($this->bookService->obtainBook($book));
     }
 
     /**
@@ -50,7 +50,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-
+        return $this->successReponse($this->bookService->createBook($request->all()), Response::HTTP_CREATED);
     }
     /**
      *
@@ -58,11 +58,11 @@ class BookController extends Controller
      */
     public function update(Request $request, $book)
     {
-
+        return $this->successReponse($this->bookService->editBook($request->all(), $book));
     }
 
     public function destroy($book)
     {
-
+        return $this->successReponse($this->bookService->deleteBook($book));
     }
 }

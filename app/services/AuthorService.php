@@ -37,7 +37,7 @@ class AuthorService{
     }
 
     /**
-     * Create an author on the authot service
+     * Create an author on the author service
      * @return string
      */
 
