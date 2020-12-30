@@ -1,0 +1,10 @@
+# Lumen Passport
+https://github.com/dusterio/lumen-passport
+
+# Lument Config (bootstrap/app.php)
+$app->register(App\Providers\AuthServiceProvider::class);
+$app->register(Laravel\Passport\PassportServiceProvider::class);
+$app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
+
+# Fix issue
+https://github.com/dusterio/lumen-passport/issues/136#issuecomment-676590707
