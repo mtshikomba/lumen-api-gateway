@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Traits\ConsumesExternalService;
+use App\Traits\ConsumesExternalService;
 
 class AuthorService{
 
