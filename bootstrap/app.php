@@ -19,8 +19,8 @@ date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 |
 */
 
-$app = new Laravel\Lumen\Application(
-    dirname(__DIR__)
+$app = new \Dusterio\LumenPassport\Lumen7Application(
+        dirname(__DIR__)
 );
 
 $app->withFacades();
