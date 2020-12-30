@@ -6,5 +6,8 @@ $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Laravel\Passport\PassportServiceProvider::class);
 $app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
 
-# Fix issue
+# Fix issue:  Choice question must have at least 1 choice available.
 https://github.com/dusterio/lumen-passport/issues/136#issuecomment-676590707
+
+# Get client access token
+php artisan passport:client
