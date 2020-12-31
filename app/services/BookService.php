@@ -4,20 +4,12 @@ namespace App\Services;
 
 use App\Traits\ConsumesExternalService;
 
-class BookService{
-
-    use ConsumesExternalService;
-
-    /**
-     * The baseUrl to consume the books service
-     */
-
-    public $baseUrl;
+class BookService extends Service{
 
     public function __construct()
     {
         $this->baseUrl = config('services.books.baseUrl');
-
+        $this->secret = config('services.books.secret');
     }
 
     /**

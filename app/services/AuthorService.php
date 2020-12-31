@@ -4,19 +4,12 @@ namespace App\Services;
 
 use App\Traits\ConsumesExternalService;
 
-class AuthorService{
-
-    use ConsumesExternalService;
-
-    /**
-     * the baseUrl to consume the authors service
-     */
-
-    public $baseUrl;
+class AuthorService extends Service{
 
     public function __construct()
     {
         $this->baseUrl = config('services.authors.baseUrl');
+        $this->secret = config('services.authors.secret');
     }
 
     /**

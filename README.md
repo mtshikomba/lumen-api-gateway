@@ -9,3 +9,4 @@
 > e.g `BOOKS_SERVICE_BASE_URL=localhost:8001`
 4. Also add a corresponding controller and implement it accordingly.
 5. Don't forget to update the `handler.php` file in your micro-service. You may copy the exact code from the Authors Microservice [https://github.com/dev-mtshikomba/lumen-authors-api] and update accordingly.
+6. Add the secret to the .env file
