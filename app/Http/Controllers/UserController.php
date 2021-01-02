@@ -45,7 +45,7 @@ class UserController extends Controller
     {
         $rules = [
             'name' => 'required|max:255',
-            'email' => 'required|email|unique:user,email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
         ];
 
@@ -67,7 +67,7 @@ class UserController extends Controller
     {
         $rules = [
             'name' => 'max:255',
-            'email' => 'email|unique:user,email,'. $user,
+            'email' => 'email|unique:users,email,'. $user,
             'password' => 'min:8|confirmed',
         ];
 

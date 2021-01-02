@@ -9,5 +9,21 @@ $app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
 # Fix issue:  Choice question must have at least 1 choice available.
 https://github.com/dusterio/lumen-passport/issues/136#issuecomment-676590707
 
-# Get client access token
+# Create clients alongside secrets tokens
 php artisan passport:client
+
+# Requesting access tokens for clients
+http://localhost:8002/oauth/token
+grant_type: client_credentials
+client_id: #
+client_secret: <client_secret>
+scope: *
+
+# Requesting access tokens for users
+http://localhost:8002/oauth/token
+grant_type: password
+client_id: #
+client_secret: <client_secret>
+scope: *
+username: <email>
+password: <password>
