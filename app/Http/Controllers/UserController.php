@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -24,7 +25,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return $this->successReponse(User::all());
+        return $this->validReponse(User::all());
     }
 
     /**
@@ -33,7 +34,7 @@ class UserController extends Controller
      */
     public function show($user)
     {
-        return $this->successReponse(User::findOrFail($user));
+        return $this->validReponse(User::findOrFail($user));
     }
 
     /**
@@ -50,9 +51,13 @@ class UserController extends Controller
 
         $this->validate($request, $rules);
 
-        $new_user = User::create($request->all());
+        $data = $request->all();
 
-        return $this->successReponse($new_user, Response::HTTP_CREATED);
+        $data['password'] = Hash::make($request->password);
+
+        $new_user = User::create($data);
+
+        return $this->validReponse($new_user, Response::HTTP_CREATED);
     }
     /**
      *
@@ -62,22 +67,27 @@ class UserController extends Controller
     {
         $rules = [
             'name' => 'max:255',
-            'email' => 'email|unique:user,email',
+            'email' => 'email|unique:user,email,'. $user,
             'password' => 'min:8|confirmed',
         ];
 
         $this->validate($request, $rules);
 
         $updated_user = User::findOrFail($user);
+
         $updated_user->fill($request->all());
 
         if ($updated_user->isClean()) {
             return $this->errorResponse('One value should change atleast', Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        if ($request->has('password')) {
+            $updated_user->password = Hash::make($request->password);
+        }
+
         $updated_user->save();
 
-        return $this->successReponse($updated_user);
+        return $this->validReponse($updated_user);
     }
 
     public function destroy($user)
@@ -86,6 +96,6 @@ class UserController extends Controller
 
         $user->delete();
 
-        return $this->successReponse($user);
+        return $this->validReponse($user);
     }
 }

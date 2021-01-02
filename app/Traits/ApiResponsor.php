@@ -9,12 +9,22 @@ trait ApiResponsor{
      * Build a success response
      * @param string|array $data
      * @param int $code
-     * @return Illuminate\Http\JsonResponse
+     * @return Illuminate\Http\Response
      */
     public function successReponse($data, $code = Response::HTTP_OK){
         return response($data, $code)->header('Content-Type', 'application/json');
     }
 
+    /**
+     * Build a valid response
+     * @param string|array $data
+     * @param int $code
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function validReponse($data, $code = Response::HTTP_OK)
+    {
+        return response()->json(['data' => $data], $code);
+    }
 
     /**
      * Build a success response
@@ -31,7 +41,7 @@ trait ApiResponsor{
      * Build a success response
      * @param string|array $message
      * @param int $code
-     * @return Illuminate\Http\JsonResponse
+     * @return Illuminate\Http\Response
      */
     public function errorMessage($message, $code)
     {
