@@ -20,7 +20,7 @@ class UserController extends Controller
     }
 
     /**
-     *
+     * list all the users
      * @return Illuminate\Http\Response
      */
     public function index()
@@ -29,7 +29,7 @@ class UserController extends Controller
     }
 
     /**
-     *
+     * show a specific user
      * @return Illuminate\Http\Response
      */
     public function show($user)
@@ -38,7 +38,7 @@ class UserController extends Controller
     }
 
     /**
-     *
+     * create a user
      * @return Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -60,7 +60,7 @@ class UserController extends Controller
         return $this->validReponse($new_user, Response::HTTP_CREATED);
     }
     /**
-     *
+     * update a user
      * @return Illuminate\Http\Response
      */
     public function update(Request $request, $user)
@@ -89,7 +89,10 @@ class UserController extends Controller
 
         return $this->validReponse($updated_user);
     }
-
+    /**
+     * delete a user
+     * @return Illuminate\Http\Response
+     */
     public function destroy($user)
     {
         $user = User::findOrFail($user);
@@ -97,5 +100,12 @@ class UserController extends Controller
         $user->delete();
 
         return $this->validReponse($user);
+    }
+    /**
+     * Identify a loggedin user
+     * @return Illuminate\Http\Response
+     */
+    public function me(Request $request){
+        return $this->validReponse($request->user());
     }
 }
