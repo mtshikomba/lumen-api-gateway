@@ -31,6 +31,16 @@ $router->group(['middleware' => 'client.credentials'], function() use ($router) 
     $router->patch('authors/{author}', 'AuthorController@update');
     $router->put('authors/{author}', 'AuthorController@update');
     $router->delete('authors/{author}', 'AuthorController@destroy');
+
+    /**
+     * Routes for user Resource
+     */
+    $router->get('users', 'UserController@index');
+    $router->post('users', 'UserController@store');
+    $router->get('users/{user}', 'UserController@show');
+    $router->patch('users/{user}', 'UserController@update');
+    $router->put('users/{user}', 'UserController@update');
+    $router->delete('users/{user}', 'UserController@destroy');
 });
 
 
